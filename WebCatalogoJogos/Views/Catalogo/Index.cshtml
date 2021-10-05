@@ -1,0 +1,84 @@
+﻿@*@model IEnumerable<WebCatalogoJogos.Models.Catalogo>*@
+
+@model WebCatalogoJogos.Models.CatalogoGeneroViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Catalogo" asp-action="Index" method="get">
+    <p>
+        <select asp-for="CatalogoGenero" asp-items="Model.Generos">
+            <option value="">All</option>
+        </select>
+
+        Titulo: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Ativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Incluido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].Locado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalogos[0].LocadoEm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Catalogos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Incluido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Locado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocadoEm)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
